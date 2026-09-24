@@ -1281,7 +1281,6 @@ function shuffleQuestions() {
   questionOrder = [
     ...questionBank,
   ];
-
   for (
     let i =
       questionOrder.length -
@@ -1294,7 +1293,6 @@ function shuffleQuestions() {
         Math.random() *
           (i + 1),
       );
-
     [
       questionOrder[
         i
@@ -1702,7 +1700,6 @@ function render() {
     "questionCount",
   ).textContent =
     `Soal ${currentNumber} dari ${totalQuestions}`;
-
   $(
     "progressFill",
   ).style.width =
@@ -1998,16 +1995,23 @@ function resetGame() {
   ];
   state.activeTeam = 0;
   state.strikes = 0;
-  state.revealedAnswers = [];
+  state.revealedAnswers =
+    [];
   state.gameFinished = false;
 
-  $("endModal").classList.remove("open");
+  $(
+    "endModal",
+  ).classList.remove(
+    "open",
+  );
 
   clearInterval(
     fireworkTimer,
   );
 
-  $("answerInput").value = "";
+  $(
+    "answerInput",
+  ).value = "";
 
   notify(
     "Game direset dan soal diacak. Selamat bermain!",
@@ -2015,28 +2019,6 @@ function resetGame() {
 
   render();
 
-  $("answerInput").focus();
-}
-  state.activeTeam = 0;
-  state.strikes = 0;
-  state.revealedAnswers =
-    [];
-  state.gameFinished = false;
-  $(
-    "endModal",
-  ).classList.remove(
-    "open",
-  );
-  clearInterval(
-    fireworkTimer,
-  );
-  $(
-    "answerInput",
-  ).value = "";
-  notify(
-    "Game direset. Selamat bermain!",
-  );
-  render();
   $(
     "answerInput",
   ).focus();
