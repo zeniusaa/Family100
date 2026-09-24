@@ -4,7 +4,7 @@ const questionBank =
     {
       id: 1,
       question:
-        "Sebutkan organel sel yang berperan dalam aktivitas dan fungsi sel!",
+        "Sebutkan organel yang berperan dalam aktivitas dan fungsi sel!",
       answers: [
         {
           answerCode: 1,
@@ -77,7 +77,7 @@ const questionBank =
     {
       id: 2,
       question:
-        "Sebutkan contoh organel yang berperan dalam proses tertentu pada sel tumbuhan!",
+        "Sebutkan contoh organel yang berperan khusus pada sel tumbuhan!",
       answers: [
         {
           answerCode: 1,
@@ -150,7 +150,7 @@ const questionBank =
     {
       id: 3,
       question:
-        "Sebutkan jenis sel khusus pada manusia beserta fungsinya!",
+        "Sebutkan spesialisasi sel yang terdapat pada hewan!",
       answers: [
         {
           answerCode: 1,
@@ -223,7 +223,7 @@ const questionBank =
     {
       id: 4,
       question:
-        "Sebutkan bagian tumbuhan yang memiliki fungsi khusus!",
+        "Sebutkan spesialisasi sel yang terdapat pada tumbuhan!",
       answers: [
         {
           answerCode: 1,
@@ -292,6 +292,7 @@ const questionBank =
         },
       ],
     },
+    //
 
     {
       id: 5,
@@ -370,81 +371,6 @@ const questionBank =
     {
       id: 6,
       question:
-        "Sebutkan organ atau bagian yang berperan dalam proses pencernaan kimiawi!",
-      answers: [
-        {
-          answerCode: 1,
-          text: "Mulut",
-          score: 100,
-          keywords:
-            [
-              "mulut",
-              "rongga mulut",
-              "amilase",
-              "enzim amilase",
-              "pencernaan karbohidrat",
-            ],
-        },
-        {
-          answerCode: 2,
-          text: "Lambung",
-          score: 80,
-          keywords:
-            [
-              "lambung",
-              "asam lambung",
-              "pepsin",
-              "enzim pepsin",
-              "pencernaan protein",
-            ],
-        },
-        {
-          answerCode: 3,
-          text: "Pankreas",
-          score: 60,
-          keywords:
-            [
-              "pankreas",
-              "pancreas",
-              "amilase",
-              "lipase",
-              "protease",
-              "enzim pankreas",
-            ],
-        },
-        {
-          answerCode: 4,
-          text: "Hati",
-          score: 40,
-          keywords:
-            [
-              "hati",
-              "liver",
-              "empedu",
-              "cairan empedu",
-              "emulsifikasi lemak",
-            ],
-        },
-        {
-          answerCode: 5,
-          text: "Usus halus",
-          score: 20,
-          keywords:
-            [
-              "usus halus",
-              "small intestine",
-              "duodenum",
-              "jejunum",
-              "ileum",
-              "pencernaan kimiawi",
-            ],
-        },
-      ],
-    },
-
-    {
-      id: 7,
-      question:
         "Sebutkan organ yang termasuk dalam sistem pernapasan manusia!",
       answers: [
         {
@@ -516,7 +442,7 @@ const questionBank =
     },
 
     {
-      id: 8,
+      id: 7,
       question:
         "Sebutkan organ atau bagian yang berperan dalam mekanisme pernapasan!",
       answers: [
@@ -589,9 +515,9 @@ const questionBank =
     },
 
     {
-      id: 9,
+      id: 8,
       question:
-        "Sebutkan bagian darah pada manusia!",
+        "Sebutkan komponen darah pada manusia!",
       answers: [
         {
           answerCode: 1,
@@ -662,7 +588,7 @@ const questionBank =
     },
 
     {
-      id: 10,
+      id: 9,
       question:
         "Sebutkan jenis pembuluh darah pada manusia!",
       answers: [
@@ -735,7 +661,7 @@ const questionBank =
     },
 
     {
-      id: 11,
+      id: 10,
       question:
         "Sebutkan organ yang berperan dalam sistem ekskresi manusia!",
       answers: [
@@ -793,22 +719,20 @@ const questionBank =
         },
         {
           answerCode: 5,
-          text: "Kelenjar keringat",
+          text: "Usus besar",
           score: 20,
           keywords:
             [
-              "kelenjar keringat",
-              "sweat gland",
-              "keringat",
-              "kulit",
-              "pengeluaran keringat",
+              "Usus besar",
+              "usus",
+              "Usus halus",
             ],
         },
       ],
     },
 
     {
-      id: 12,
+      id: 11,
       question:
         "Sebutkan zat sisa metabolisme dan organ yang mengeluarkannya!",
       answers: [
@@ -881,9 +805,9 @@ const questionBank =
     },
 
     {
-      id: 13,
+      id: 12,
       question:
-        "Sebutkan zat gizi atau nutrisi yang penting bagi tubuh!",
+        "Sebutkan zat atau nutrisi yang penting bagi tubuh!",
       answers: [
         {
           answerCode: 1,
@@ -954,7 +878,7 @@ const questionBank =
     },
 
     {
-      id: 14,
+      id: 13,
       question:
         "Sebutkan gangguan yang dapat terjadi pada sistem peredaran darah!",
       answers: [
@@ -1027,78 +951,367 @@ const questionBank =
     },
 
     {
-      id: 15,
+      id: 14,
       question:
-        "Sebutkan organ atau bagian yang berperan dalam menjaga keseimbangan tubuh melalui sistem ekskresi!",
+        "Sebutkan gangguan yang dapat terjadi pada sistem pernapasan manusia!",
       answers: [
         {
           answerCode: 1,
-          text: "Ginjal",
+          text: "Asma",
           score: 100,
           keywords:
             [
-              "ginjal",
-              "kidney",
-              "buah pinggang",
-              "mengatur cairan",
-              "elektrolit",
+              "asma",
+              "sesak napas",
+              "penyempitan saluran pernapasan",
             ],
         },
         {
           answerCode: 2,
-          text: "Kulit",
+          text: "Bronkitis",
           score: 80,
           keywords:
             [
-              "kulit",
-              "skin",
-              "keringat",
-              "mengatur suhu",
-              "kelenjar keringat",
+              "bronkitis",
+              "radang bronkus",
+              "peradangan bronkus",
             ],
         },
         {
           answerCode: 3,
-          text: "Paru-paru",
+          text: "Pneumonia",
           score: 60,
           keywords:
             [
-              "paru-paru",
-              "paru paru",
-              "paru",
-              "lungs",
-              "co2",
+              "pneumonia",
+              "radang paru-paru",
+              "infeksi paru-paru",
             ],
         },
         {
           answerCode: 4,
-          text: "Hati",
+          text: "Tuberkulosis",
           score: 40,
           keywords:
             [
-              "hati",
-              "liver",
-              "hepar",
-              "bilirubin",
-              "empedu",
+              "tuberkulosis",
+              "tbc",
+              "tb",
+              "tbc paru",
             ],
         },
         {
           answerCode: 5,
-          text: "Kelenjar keringat",
+          text: "Influenza",
           score: 20,
           keywords:
             [
-              "kelenjar keringat",
-              "sweat gland",
-              "keringat",
-              "kulit",
-              "pengaturan suhu",
+              "influenza",
+              "flu",
+              "flu biasa",
+            ],
+        },
+      ],
+    },
+
+    {
+      id: 15,
+      question:
+        "Sebutkan gangguan yang dapat terjadi pada sistem pencernaan manusia!",
+      answers: [
+        {
+          answerCode: 1,
+          text: "Diare",
+          score: 100,
+          keywords:
+            [
+              "diare",
+              "mencret",
+              "buang air besar cair",
+            ],
+        },
+        {
+          answerCode: 2,
+          text: "Sembelit",
+          score: 80,
+          keywords:
+            [
+              "sembelit",
+              "konstipasi",
+              "susah buang air besar",
+              "susah bab",
+            ],
+        },
+        {
+          answerCode: 3,
+          text: "Gastritis",
+          score: 60,
+          keywords:
+            [
+              "gastritis",
+              "maag",
+              "radang lambung",
+              "sakit maag",
+            ],
+        },
+        {
+          answerCode: 4,
+          text: "Apendisitis",
+          score: 40,
+          keywords:
+            [
+              "apendisitis",
+              "radang usus buntu",
+              "usus buntu",
+            ],
+        },
+        {
+          answerCode: 5,
+          text: "Karies gigi",
+          score: 20,
+          keywords:
+            [
+              "karies gigi",
+              "karies",
+              "gigi berlubang",
+              "gigi rusak",
+            ],
+        },
+      ],
+    },
+
+    {
+      id: 16,
+      question:
+        "Sebutkan gangguan yang dapat terjadi pada sistem ekskresi manusia!",
+      answers: [
+        {
+          answerCode: 1,
+          text: "Batu ginjal",
+          score: 100,
+          keywords:
+            [
+              "batu ginjal",
+              "batu pada ginjal",
+              "batu saluran kemih",
+            ],
+        },
+        {
+          answerCode: 2,
+          text: "Nefritis",
+          score: 80,
+          keywords:
+            [
+              "nefritis",
+              "radang ginjal",
+              "peradangan ginjal",
+            ],
+        },
+        {
+          answerCode: 3,
+          text: "Gagal ginjal",
+          score: 60,
+          keywords:
+            [
+              "gagal ginjal",
+              "ginjal gagal",
+              "kerusakan ginjal",
+            ],
+        },
+        {
+          answerCode: 4,
+          text: "Albuminuria",
+          score: 40,
+          keywords:
+            [
+              "albuminuria",
+              "albumin dalam urine",
+              "protein dalam urine",
+            ],
+        },
+        {
+          answerCode: 5,
+          text: "Hematuria",
+          score: 20,
+          keywords:
+            [
+              "hematuria",
+              "darah dalam urine",
+              "darah dalam urin",
+              "urin berdarah",
+            ],
+        },
+      ],
+    },
+
+    {
+      id: 17,
+      question:
+        "Sebutkan hal-hal yang dapat menyebabkan gangguan pada sistem pernapasan manusia!",
+      answers: [
+        {
+          answerCode: 1,
+          text: "Merokok",
+          score: 100,
+          keywords:
+            [
+              "merokok",
+              "rokok",
+              "asap rokok",
+            ],
+        },
+        {
+          answerCode: 2,
+          text: "Polusi udara",
+          score: 80,
+          keywords:
+            [
+              "polusi udara",
+              "pencemaran udara",
+              "udara tercemar",
+            ],
+        },
+        {
+          answerCode: 3,
+          text: "Asap kendaraan",
+          score: 60,
+          keywords:
+            [
+              "asap kendaraan",
+              "asap knalpot",
+              "knalpot",
+            ],
+        },
+        {
+          answerCode: 4,
+          text: "Debu",
+          score: 40,
+          keywords:
+            [
+              "debu",
+              "paparan debu",
+            ],
+        },
+        {
+          answerCode: 5,
+          text: "Asap pembakaran",
+          score: 20,
+          keywords:
+            [
+              "asap pembakaran",
+              "asap",
+              "pembakaran sampah",
+            ],
+        },
+      ],
+    },
+
+    {
+      id: 18,
+      question:
+        "Sebutkan tingkatan organisasi kehidupan dalam ekologi dari yang paling kecil hingga paling besar!",
+      answers: [
+        {
+          answerCode: 1,
+          text: "Populasi",
+          score: 100,
+          keywords:
+            [
+              "populasi",
+              "population",
+              "kumpulan individu sejenis",
+            ],
+        },
+        {
+          answerCode: 2,
+          text: "Komunitas",
+          score: 80,
+          keywords:
+            [
+              "komunitas",
+              "community",
+              "kumpulan populasi",
+              "berbagai populasi",
+            ],
+        },
+        {
+          answerCode: 3,
+          text: "Ekosistem",
+          score: 60,
+          keywords:
+            [
+              "ekosistem",
+              "ecosystem",
+              "makhluk hidup dan lingkungan",
+              "interaksi makhluk hidup",
+            ],
+        },
+        {
+          answerCode: 4,
+          text: "Bioma",
+          score: 40,
+          keywords:
+            [
+              "bioma",
+              "biome",
+              "kumpulan ekosistem",
+              "wilayah luas",
+            ],
+        },
+        {
+          answerCode: 5,
+          text: "Biosfer",
+          score: 20,
+          keywords:
+            [
+              "biosfer",
+              "biosphere",
+              "seluruh ekosistem",
+              "kehidupan di bumi",
             ],
         },
       ],
     },
   ];
+
+let questionOrder =
+  [];
+
+function shuffleQuestions() {
+  questionOrder = [
+    ...questionBank,
+  ];
+
+  for (
+    let i =
+      questionOrder.length -
+      1;
+    i > 0;
+    i--
+  ) {
+    const j =
+      Math.floor(
+        Math.random() *
+          (i + 1),
+      );
+
+    [
+      questionOrder[
+        i
+      ],
+      questionOrder[
+        j
+      ],
+    ] = [
+      questionOrder[
+        j
+      ],
+      questionOrder[
+        i
+      ],
+    ];
+  }
+}
 
 /* State permainan terpusat. */
 const state = {
