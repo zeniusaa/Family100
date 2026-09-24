@@ -1680,7 +1680,7 @@ function notify(
     message;
 }
 function currentQuestion() {
-  return questionBank[
+  return questionOrder[
     state
       .currentQuestionIndex
   ];
@@ -1688,14 +1688,25 @@ function currentQuestion() {
 function render() {
   const q =
     currentQuestion();
+  const totalQuestions =
+    questionOrder.length;
+  const currentNumber =
+    state.currentQuestionIndex +
+    1;
+  const progress =
+    (currentNumber /
+      totalQuestions) *
+    100;
+
   $(
     "questionCount",
   ).textContent =
-    `Soal ${state.currentQuestionIndex + 1} dari 10`;
+    `Soal ${currentNumber} dari ${totalQuestions}`;
+
   $(
     "progressFill",
   ).style.width =
-    `${(state.currentQuestionIndex + 1) * 10}%`;
+    `${progress}%`;
   $(
     "questionText",
   ).textContent =
@@ -1978,10 +1989,34 @@ function nextQuestion() {
   ).focus();
 }
 function resetGame() {
+  // Acak ulang soal setiap game baru
+  shuffleQuestions();
+
   state.currentQuestionIndex = 0;
   state.scores = [
     0, 0,
   ];
+  state.activeTeam = 0;
+  state.strikes = 0;
+  state.revealedAnswers = [];
+  state.gameFinished = false;
+
+  $("endModal").classList.remove("open");
+
+  clearInterval(
+    fireworkTimer,
+  );
+
+  $("answerInput").value = "";
+
+  notify(
+    "Game direset dan soal diacak. Selamat bermain!",
+  );
+
+  render();
+
+  $("answerInput").focus();
+}
   state.activeTeam = 0;
   state.strikes = 0;
   state.revealedAnswers =
