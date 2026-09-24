@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Family 100 – IPA Kelas VIII</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/lucide@0.577.0/dist/umd/lucide.min.js" type="text/javascript"></script>
+    <script src="https://cdn.tailwindcss.com/3.4.17" type="text/javascript"></script>
+  </head>
+  <body data-template-id="__page-root">
+    <div class="app-shell">
+      <header data-template-id="game-header" class="topbar canva-header">
+        <div class="topbar-inner">
+          <img
+            data-template-id="family-logo"
+            class="brand-logo canva-image"
+            loading="lazy"
+            onerror="this.style.display='none'; document.getElementById('logoFallback').style.display='block';"
+            src="canva://MAHVRLILW2U/1"
+            alt="Logo Family 100 berwarna biru, putih, dan kuning"
+          />
+          <div id="logoFallback" class="brand-fallback">FAMILY<br />100</div>
+          <div class="title-block">
+            <h1 data-template-id="game-title" class="canva-text">FAMILY 100 – IPA KELAS VIII</h1>
+            <p data-template-id="game-subtitle" class="subtitle canva-text">Organ Tubuh</p>
+          </div>
+          <div class="head-status">
+            <p id="questionCount" class="question-count" aria-live="polite"></p>
+            <div class="progress-rail" aria-label="Kemajuan permainan">
+              <div id="progressFill" class="progress-fill"></div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="game-grid">
+        <aside id="teamPanel0" class="team-panel" aria-label="Panel Tim 1">
+          <div data-template-id="active-turn-label" class="team-label canva-tag">GILIRAN AKTIF</div>
+          <label data-template-id="team1-label" class="sr-only canva-text" for="teamName0">Nama Tim 1</label>
+          <input id="teamName0" class="team-name-input" aria-label="Nama Tim 1" maxlength="18" />
+          <div id="score0" class="score" aria-live="polite">0</div>
+          <div data-template-id="score-caption" class="score-caption canva-text">SKOR</div>
+          <div id="strikes0" class="strikes" aria-label="Kesalahan Tim 1"></div>
+          <div id="points0" class="points-float" aria-live="assertive"></div>
+        </aside>
+
+        <section data-template-id="quiz-board" class="board canva-panel" aria-labelledby="questionText">
+          <p data-template-id="round-label" class="round-label canva-text">PAPAN JAWABAN SURVEI</p>
+          <h2 id="questionText" class="question"></h2>
+          <div id="answers" class="answers" aria-label="Papan jawaban"></div>
+        </section>
+
+        <aside id="teamPanel1" class="team-panel" aria-label="Panel Tim 2">
+          <div data-template-id="active-turn-label" class="team-label canva-tag">GILIRAN AKTIF</div>
+          <label data-template-id="team2-label" class="sr-only canva-text" for="teamName1">Nama Tim 2</label>
+          <input id="teamName1" class="team-name-input" aria-label="Nama Tim 2" maxlength="18" />
+          <div id="score1" class="score" aria-live="polite">0</div>
+          <div data-template-id="score-caption" class="score-caption canva-text">SKOR</div>
+          <div id="strikes1" class="strikes" aria-label="Kesalahan Tim 2"></div>
+          <div id="points1" class="points-float" aria-live="assertive"></div>
+        </aside>
+      </main>
+
+      <footer data-template-id="game-footer" class="canva-footer">Mode Operator Guru • IPA Kelas VIII</footer>
+    </div>
+
+    <section data-template-id="operator-panel" class="operator-dock canva-panel" aria-label="Panel operator guru">
+      <div class="operator-inner">
+        <div class="operator-top">
+          <input
+            id="answerInput"
+            data-template-id="answer-input"
+            class="answer-input canva-input"
+            type="text"
+            autocomplete="off"
+            placeholder="Ketik jawaban peserta..."
+          />
+          <button id="checkBtn" data-template-id="check-button" class="button gold canva-button" type="button">Cek Jawaban</button>
+          <button id="soundBtn" data-template-id="sound-button" class="button sound canva-button" type="button">Aktifkan Suara</button>
+        </div>
+        <div class="operator-controls">
+          <button id="manualBtn" data-template-id="correct-button" class="button canva-button" type="button">Benar</button>
+          <button id="wrongBtn" data-template-id="wrong-button" class="button red canva-button" type="button">Salah / ❌</button>
+          <button id="switchBtn" data-template-id="switch-button" class="button dark canva-button" type="button">Ganti Tim</button>
+          <button id="resetXBtn" data-template-id="resetx-button" class="button dark canva-button" type="button">Reset X</button>
+          <button id="revealAllBtn" data-template-id="revealall-button" class="button dark canva-button" type="button">Buka Semua Jawaban</button>
+          <button id="nextBtn" data-template-id="next-button" class="button canva-button" type="button">Soal Berikutnya</button>
+          <button id="resetBtn" data-template-id="resetgame-button" class="button red canva-button" type="button">Reset Game</button>
+        </div>
+        <div id="manualPicker" class="manual-picker" aria-label="Pilihan jawaban manual">
+          <span data-template-id="manual-picker-title" class="picker-title canva-text">Buka jawaban nomor:</span>
+          <div id="pickerButtons"></div>
+        </div>
+        <div id="toast" class="toast" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <div id="strikeOverlay" class="strike-overlay" aria-hidden="true"><span>❌</span></div>
+
+    <div id="endModal" class="end-modal" role="dialog" aria-modal="true" aria-labelledby="finalTitle">
+      <div class="modal-card">
+        <canvas id="fireworks"></canvas>
+        <div class="modal-content">
+          <h2 id="finalTitle" data-template-id="final-title" class="final-title canva-text">HASIL AKHIR</h2>
+          <p id="winnerText" class="winner-text" aria-live="assertive"></p>
+          <div class="final-scores">
+            <div class="final-score-box"><span id="finalName0"></span><strong id="finalScore0">0</strong></div>
+            <div class="final-score-box"><span id="finalName1"></span><strong id="finalScore1">0</strong></div>
+          </div>
+          <p id="totalPoints" class="total-points"></p>
+          <button id="modalResetBtn" data-template-id="modal-reset-button" class="button gold canva-button" type="button">Main Lagi</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
