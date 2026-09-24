@@ -2191,6 +2191,7 @@ function launchFireworks() {
 document.addEventListener(
   "DOMContentLoaded",
   () => {
+    shuffleQuestions();
     render();
     $(
       "checkBtn",
