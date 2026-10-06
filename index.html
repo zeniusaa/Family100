@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Family 100 – IPA Kelas VIII</title>
+    <title>Family 100</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body data-template-id="__page-root">
@@ -12,8 +12,8 @@
         <div class="topbar-inner">
           <div data-template-id="family-logo" class="brand-fallback" aria-hidden="true">FAMILY<br />100</div>
           <div class="title-block">
-            <h1 data-template-id="game-title" class="canva-text">FAMILY 100 – IPA KELAS VIII</h1>
-            <p data-template-id="game-subtitle" class="subtitle canva-text">Organ Tubuh</p>
+            <h1 id="gameTitle" data-template-id="game-title" class="canva-text">FAMILY 100</h1>
+            <p id="gameSubtitle" data-template-id="game-subtitle" class="subtitle canva-text"></p>
           </div>
           <div class="head-status">
             <p id="questionCount" class="question-count" aria-live="polite"></p>
@@ -52,12 +52,11 @@
         </aside>
       </main>
 
-      <footer data-template-id="game-footer" class="canva-footer">Mode Operator Guru • IPA Kelas VIII</footer>
+      <footer id="footerText" data-template-id="game-footer" class="canva-footer">Mode Operator Guru</footer>
     </div>
 
     <section id="operatorDock" data-template-id="operator-panel" class="operator-dock canva-panel" aria-label="Panel operator guru">
-      <button id="dockToggle" class="dock-toggle" type="button" aria-controls="operatorInner" aria-expanded="true">Sembunyikan Panel Guru</button>
-      <div id="operatorInner" class="operator-inner">
+      <div class="operator-inner">
         <div class="operator-top">
           <input
             id="answerInput"
@@ -68,20 +67,23 @@
             placeholder="Ketik jawaban peserta..."
           />
           <button id="checkBtn" data-template-id="check-button" class="button gold canva-button" type="button">Cek Jawaban</button>
-          <button id="soundBtn" data-template-id="sound-button" class="button sound canva-button" type="button" aria-pressed="true">Suara: Nyala</button>
+          <button id="toolsToggle" class="button dark tools-toggle" type="button" aria-controls="operatorTools" aria-expanded="true">Sembunyikan Tombol</button>
         </div>
-        <div class="operator-controls">
-          <button id="manualBtn" data-template-id="correct-button" class="button canva-button" type="button">Benar</button>
-          <button id="wrongBtn" data-template-id="wrong-button" class="button red canva-button" type="button">Salah / ❌</button>
-          <button id="switchBtn" data-template-id="switch-button" class="button dark canva-button" type="button">Ganti Tim</button>
-          <button id="resetXBtn" data-template-id="resetx-button" class="button dark canva-button" type="button">Reset X</button>
-          <button id="revealAllBtn" data-template-id="revealall-button" class="button dark canva-button" type="button">Buka Semua Jawaban</button>
-          <button id="nextBtn" data-template-id="next-button" class="button canva-button" type="button">Soal Berikutnya</button>
-          <button id="resetBtn" data-template-id="resetgame-button" class="button red canva-button" type="button">Reset Game</button>
-        </div>
-        <div id="manualPicker" class="manual-picker" aria-label="Pilihan jawaban manual">
-          <span data-template-id="manual-picker-title" class="picker-title canva-text">Buka jawaban nomor:</span>
-          <div id="pickerButtons"></div>
+        <div id="operatorTools" class="operator-tools">
+          <div class="operator-controls">
+            <button id="manualBtn" data-template-id="correct-button" class="button canva-button" type="button">Benar</button>
+            <button id="wrongBtn" data-template-id="wrong-button" class="button red canva-button" type="button">Salah / ❌</button>
+            <button id="switchBtn" data-template-id="switch-button" class="button dark canva-button" type="button">Ganti Tim</button>
+            <button id="resetXBtn" data-template-id="resetx-button" class="button dark canva-button" type="button">Reset X</button>
+            <button id="revealAllBtn" data-template-id="revealall-button" class="button dark canva-button" type="button">Buka Semua Jawaban</button>
+            <button id="nextBtn" data-template-id="next-button" class="button canva-button" type="button">Soal Berikutnya</button>
+            <button id="resetBtn" data-template-id="resetgame-button" class="button red canva-button" type="button">Reset Game</button>
+            <button id="setupBtn" class="button dark canva-button" type="button">Ganti Paket Soal</button>
+          </div>
+          <div id="manualPicker" class="manual-picker" aria-label="Pilihan jawaban manual">
+            <span data-template-id="manual-picker-title" class="picker-title canva-text">Buka jawaban nomor:</span>
+            <div id="pickerButtons"></div>
+          </div>
         </div>
         <div id="toast" class="toast" aria-live="polite"></div>
       </div>
@@ -100,11 +102,24 @@
             <div class="final-score-box"><span id="finalName1"></span><strong id="finalScore1">0</strong></div>
           </div>
           <p id="totalPoints" class="total-points"></p>
-          <button id="modalResetBtn" data-template-id="modal-reset-button" class="button gold canva-button" type="button">Main Lagi</button>
+          <div class="modal-actions">
+            <button id="modalResetBtn" data-template-id="modal-reset-button" class="button gold canva-button" type="button">Main Lagi</button>
+            <button id="modalSetupBtn" class="button dark canva-button" type="button">Pilih Soal Lain</button>
+          </div>
         </div>
       </div>
     </div>
 
+    <div id="setupScreen" class="setup-screen" role="dialog" aria-modal="true" aria-labelledby="setupTitle">
+      <div class="setup-card">
+        <div class="brand-fallback setup-logo" aria-hidden="true">FAMILY<br />100</div>
+        <h2 id="setupTitle" class="setup-title">Pilih Paket Soal</h2>
+        <p class="setup-hint">Pilih kelas dan mata pelajaran. Urutan soal diacak setiap permainan.</p>
+        <div id="setChoices" class="set-choices"></div>
+      </div>
+    </div>
+
+    <script src="soal.js"></script>
     <script src="script.js"></script>
   </body>
 </html>

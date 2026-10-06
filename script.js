@@ -1,1287 +1,21 @@
-/* Bank soal IPA Kelas VIII: kode dan kata kunci hanya dipakai operator/fuzzy matching. */
-const questionBank =
-  [
-    {
-      id: 1,
-      question:
-        "Sebutkan organel yang berperan dalam aktivitas dan fungsi sel!",
-      answers: [
-        {
-          answerCode: 1,
-          text: "Inti sel",
-          score: 100,
-          keywords:
-            [
-              "inti sel",
-              "nukleus",
-              "nucleus",
-              "inti",
-              "pusat pengendali sel",
-            ],
-        },
-        {
-          answerCode: 2,
-          text: "Ribosom",
-          score: 80,
-          keywords:
-            [
-              "ribosom",
-              "ribosome",
-              "pembentuk protein",
-              "sintesis protein",
-              "organel ribosom",
-            ],
-        },
-        {
-          answerCode: 3,
-          text: "Badan Golgi",
-          score: 60,
-          keywords:
-            [
-              "badan golgi",
-              "golgi",
-              "aparatus golgi",
-              "pengeluaran zat",
-              "organel golgi",
-            ],
-        },
-        {
-          answerCode: 4,
-          text: "Mitokondria",
-          score: 40,
-          keywords:
-            [
-              "mitokondria",
-              "mitochondria",
-              "penghasil energi",
-              "respirasi seluler",
-              "atp",
-            ],
-        },
-        {
-          answerCode: 5,
-          text: "Vakuola",
-          score: 20,
-          keywords:
-            [
-              "vakuola",
-              "vacuole",
-              "penyimpanan air",
-              "cadangan makanan",
-              "zat buangan",
-            ],
-        },
-      ],
-    },
-
-    {
-      id: 2,
-      question:
-        "Sebutkan contoh organel yang berperan khusus pada sel tumbuhan!",
-      answers: [
-        {
-          answerCode: 1,
-          text: "Kloroplas",
-          score: 100,
-          keywords:
-            [
-              "kloroplas",
-              "chloroplast",
-              "fotosintesis",
-              "plastida hijau",
-              "organel fotosintesis",
-            ],
-        },
-        {
-          answerCode: 2,
-          text: "Kromoplas",
-          score: 80,
-          keywords:
-            [
-              "kromoplas",
-              "chromoplast",
-              "warna",
-              "plastida warna",
-              "pemberi warna",
-            ],
-        },
-        {
-          answerCode: 3,
-          text: "Leukoplas",
-          score: 60,
-          keywords:
-            [
-              "leukoplas",
-              "leucoplast",
-              "cadangan makanan",
-              "plastida penyimpan",
-              "penyimpanan makanan",
-            ],
-        },
-        {
-          answerCode: 4,
-          text: "Vakuola",
-          score: 40,
-          keywords:
-            [
-              "vakuola",
-              "vacuole",
-              "getah sel",
-              "penyimpanan air",
-              "tonoplas",
-            ],
-        },
-        {
-          answerCode: 5,
-          text: "Ribosom",
-          score: 20,
-          keywords:
-            [
-              "ribosom",
-              "ribosome",
-              "pembentukan protein",
-              "sintesis protein",
-              "organel protein",
-            ],
-        },
-      ],
-    },
-
-    {
-      id: 3,
-      question:
-        "Sebutkan spesialisasi sel yang terdapat pada hewan!",
-      answers: [
-        {
-          answerCode: 1,
-          text: "Sel darah merah",
-          score: 100,
-          keywords:
-            [
-              "sel darah merah",
-              "eritrosit",
-              "eritosit",
-              "red blood cell",
-              "mengangkut oksigen",
-            ],
-        },
-        {
-          answerCode: 2,
-          text: "Sel darah putih",
-          score: 80,
-          keywords:
-            [
-              "sel darah putih",
-              "leukosit",
-              "lekosit",
-              "white blood cell",
-              "melawan penyakit",
-            ],
-        },
-        {
-          answerCode: 3,
-          text: "Trombosit",
-          score: 60,
-          keywords:
-            [
-              "trombosit",
-              "trombosid",
-              "platelet",
-              "keping darah",
-              "pembekuan darah",
-            ],
-        },
-        {
-          answerCode: 4,
-          text: "Sel saraf",
-          score: 40,
-          keywords:
-            [
-              "sel saraf",
-              "neuron",
-              "saraf",
-              "menghantarkan informasi",
-              "rangsangan",
-            ],
-        },
-        {
-          answerCode: 5,
-          text: "Sel otot",
-          score: 20,
-          keywords:
-            [
-              "sel otot",
-              "otot rangka",
-              "otot polos",
-              "otot jantung",
-              "pergerakan",
-            ],
-        },
-      ],
-    },
-
-    {
-      id: 4,
-      question:
-        "Sebutkan spesialisasi sel yang terdapat pada tumbuhan!",
-      answers: [
-        {
-          answerCode: 1,
-          text: "Sel rambut akar",
-          score: 100,
-          keywords:
-            [
-              "sel rambut akar",
-              "rambut akar",
-              "root hair",
-              "penyerapan air",
-              "penyerapan mineral",
-            ],
-        },
-        {
-          answerCode: 2,
-          text: "Sel mesofil daun",
-          score: 80,
-          keywords:
-            [
-              "sel mesofil",
-              "mesofil daun",
-              "palisade",
-              "spons",
-              "fotosintesis",
-            ],
-        },
-        {
-          answerCode: 3,
-          text: "Sel penjaga stomata",
-          score: 60,
-          keywords:
-            [
-              "sel penjaga stomata",
-              "sel penjaga",
-              "stomata",
-              "guard cell",
-              "pertukaran gas",
-            ],
-        },
-        {
-          answerCode: 4,
-          text: "Xilem",
-          score: 40,
-          keywords:
-            [
-              "xilem",
-              "xylem",
-              "jaringan xilem",
-              "mengangkut air",
-              "mengangkut mineral",
-            ],
-        },
-        {
-          answerCode: 5,
-          text: "Floem",
-          score: 20,
-          keywords:
-            [
-              "floem",
-              "phloem",
-              "jaringan floem",
-              "hasil fotosintesis",
-              "mengangkut hasil fotosintesis",
-            ],
-        },
-      ],
-    },
-    //
-
-    {
-      id: 5,
-      question:
-        "Sebutkan organ yang termasuk dalam sistem pencernaan manusia!",
-      answers: [
-        {
-          answerCode: 1,
-          text: "Mulut",
-          score: 100,
-          keywords:
-            [
-              "mulut",
-              "rongga mulut",
-              "oral",
-              "mouth",
-              "tempat masuk makanan",
-            ],
-        },
-        {
-          answerCode: 2,
-          text: "Lambung",
-          score: 80,
-          keywords:
-            [
-              "lambung",
-              "maag",
-              "stomach",
-              "asam lambung",
-              "organ lambung",
-            ],
-        },
-        {
-          answerCode: 3,
-          text: "Usus halus",
-          score: 60,
-          keywords:
-            [
-              "usus halus",
-              "usus kecil",
-              "small intestine",
-              "duodenum",
-              "jejunum",
-              "ileum",
-            ],
-        },
-        {
-          answerCode: 4,
-          text: "Usus besar",
-          score: 40,
-          keywords:
-            [
-              "usus besar",
-              "kolon",
-              "colon",
-              "large intestine",
-              "penyerapan air",
-            ],
-        },
-        {
-          answerCode: 5,
-          text: "Esofagus",
-          score: 20,
-          keywords:
-            [
-              "esofagus",
-              "esophagus",
-              "kerongkongan",
-              "saluran makanan",
-              "gerak peristaltik",
-            ],
-        },
-      ],
-    },
-
-    {
-      id: 6,
-      question:
-        "Sebutkan organ yang termasuk dalam sistem pernapasan manusia!",
-      answers: [
-        {
-          answerCode: 1,
-          text: "Hidung",
-          score: 100,
-          keywords:
-            [
-              "hidung",
-              "rongga hidung",
-              "nose",
-              "organ hidung",
-              "saluran pernapasan",
-            ],
-        },
-        {
-          answerCode: 2,
-          text: "Trakea",
-          score: 80,
-          keywords:
-            [
-              "trakea",
-              "trachea",
-              "batang tenggorokan",
-              "saluran napas",
-              "trakhea",
-            ],
-        },
-        {
-          answerCode: 3,
-          text: "Bronkus",
-          score: 60,
-          keywords:
-            [
-              "bronkus",
-              "bronchus",
-              "cabang trakea",
-              "saluran bronkus",
-              "bronchi",
-            ],
-        },
-        {
-          answerCode: 4,
-          text: "Alveolus",
-          score: 40,
-          keywords:
-            [
-              "alveolus",
-              "alveoli",
-              "gelembung paru",
-              "pertukaran gas",
-              "tempat pertukaran gas",
-            ],
-        },
-        {
-          answerCode: 5,
-          text: "Paru-paru",
-          score: 20,
-          keywords:
-            [
-              "paru-paru",
-              "paru paru",
-              "paru",
-              "lungs",
-              "organ paru",
-            ],
-        },
-      ],
-    },
-
-    {
-      id: 7,
-      question:
-        "Sebutkan organ atau bagian yang berperan dalam mekanisme pernapasan!",
-      answers: [
-        {
-          answerCode: 1,
-          text: "Diafragma",
-          score: 100,
-          keywords:
-            [
-              "diafragma",
-              "diaphragm",
-              "otot diafragma",
-              "pernapasan perut",
-              "kontraksi diafragma",
-            ],
-        },
-        {
-          answerCode: 2,
-          text: "Otot antartulang rusuk",
-          score: 80,
-          keywords:
-            [
-              "otot antartulang rusuk",
-              "otot antar tulang rusuk",
-              "interkostal",
-              "otot dada",
-              "pernapasan dada",
-            ],
-        },
-        {
-          answerCode: 3,
-          text: "Rongga dada",
-          score: 60,
-          keywords:
-            [
-              "rongga dada",
-              "dada",
-              "cavum thorax",
-              "thoracic cavity",
-              "ruang dada",
-            ],
-        },
-        {
-          answerCode: 4,
-          text: "Paru-paru",
-          score: 40,
-          keywords:
-            [
-              "paru-paru",
-              "paru paru",
-              "paru",
-              "lungs",
-              "organ pernapasan",
-            ],
-        },
-        {
-          answerCode: 5,
-          text: "Alveolus",
-          score: 20,
-          keywords:
-            [
-              "alveolus",
-              "alveoli",
-              "pertukaran gas",
-              "gelembung paru",
-              "kantung udara",
-            ],
-        },
-      ],
-    },
-
-    {
-      id: 8,
-      question:
-        "Sebutkan komponen darah pada manusia!",
-      answers: [
-        {
-          answerCode: 1,
-          text: "Plasma",
-          score: 100,
-          keywords:
-            [
-              "plasma",
-              "plasma darah",
-              "cairan darah",
-              "blood plasma",
-              "bagian cair darah",
-            ],
-        },
-        {
-          answerCode: 2,
-          text: "Eritrosit",
-          score: 80,
-          keywords:
-            [
-              "eritrosit",
-              "sel darah merah",
-              "eritosit",
-              "red blood cell",
-              "pengangkut oksigen",
-            ],
-        },
-        {
-          answerCode: 3,
-          text: "Leukosit",
-          score: 60,
-          keywords:
-            [
-              "leukosit",
-              "sel darah putih",
-              "lekosit",
-              "white blood cell",
-              "kekebalan",
-            ],
-        },
-        {
-          answerCode: 4,
-          text: "Trombosit",
-          score: 40,
-          keywords:
-            [
-              "trombosit",
-              "trombosid",
-              "platelet",
-              "keping darah",
-              "pembekuan",
-            ],
-        },
-        {
-          answerCode: 5,
-          text: "Hemoglobin",
-          score: 20,
-          keywords:
-            [
-              "hemoglobin",
-              "haemoglobin",
-              "hb",
-              "zat warna darah",
-              "protein darah",
-            ],
-        },
-      ],
-    },
-
-    {
-      id: 9,
-      question:
-        "Sebutkan jenis pembuluh darah pada manusia!",
-      answers: [
-        {
-          answerCode: 1,
-          text: "Arteri",
-          score: 100,
-          keywords:
-            [
-              "arteri",
-              "artery",
-              "pembuluh nadi",
-              "nadi",
-              "pembuluh darah arteri",
-            ],
-        },
-        {
-          answerCode: 2,
-          text: "Vena",
-          score: 80,
-          keywords:
-            [
-              "vena",
-              "vein",
-              "pembuluh balik",
-              "pembuluh vena",
-              "pembuluh menuju jantung",
-            ],
-        },
-        {
-          answerCode: 3,
-          text: "Kapiler",
-          score: 60,
-          keywords:
-            [
-              "kapiler",
-              "capillary",
-              "pembuluh kapiler",
-              "pembuluh rambut",
-              "pertukaran zat",
-            ],
-        },
-        {
-          answerCode: 4,
-          text: "Arteriola",
-          score: 40,
-          keywords:
-            [
-              "arteriola",
-              "arteriole",
-              "cabang arteri",
-              "pembuluh nadi kecil",
-              "arteri kecil",
-            ],
-        },
-        {
-          answerCode: 5,
-          text: "Venula",
-          score: 20,
-          keywords:
-            [
-              "venula",
-              "venule",
-              "cabang vena",
-              "pembuluh balik kecil",
-              "vena kecil",
-            ],
-        },
-      ],
-    },
-
-    {
-      id: 10,
-      question:
-        "Sebutkan organ yang berperan dalam sistem ekskresi manusia!",
-      answers: [
-        {
-          answerCode: 1,
-          text: "Ginjal",
-          score: 100,
-          keywords:
-            [
-              "ginjal",
-              "kidney",
-              "buah pinggang",
-              "organ ginjal",
-              "pembentukan urin",
-            ],
-        },
-        {
-          answerCode: 2,
-          text: "Paru-paru",
-          score: 80,
-          keywords:
-            [
-              "paru-paru",
-              "paru paru",
-              "paru",
-              "lungs",
-              "mengeluarkan co2",
-            ],
-        },
-        {
-          answerCode: 3,
-          text: "Kulit",
-          score: 60,
-          keywords:
-            [
-              "kulit",
-              "skin",
-              "keringat",
-              "kelenjar keringat",
-              "organ kulit",
-            ],
-        },
-        {
-          answerCode: 4,
-          text: "Hati",
-          score: 40,
-          keywords:
-            [
-              "hati",
-              "liver",
-              "hepar",
-              "empedu",
-              "bilirubin",
-            ],
-        },
-        {
-          answerCode: 5,
-          text: "Usus besar",
-          score: 20,
-          keywords:
-            [
-              "usus besar",
-              "kolon",
-              "colon",
-              "feses",
-            ],
-        },
-      ],
-    },
-
-    {
-      id: 11,
-      question:
-        "Sebutkan zat sisa metabolisme dan organ yang mengeluarkannya!",
-      answers: [
-        {
-          answerCode: 1,
-          text: "Urea",
-          score: 100,
-          keywords:
-            [
-              "urea",
-              "zat urea",
-              "sisa metabolisme",
-              "limbah nitrogen",
-              "ginjal",
-            ],
-        },
-        {
-          answerCode: 2,
-          text: "Karbon dioksida",
-          score: 80,
-          keywords:
-            [
-              "karbon dioksida",
-              "karbondioksida",
-              "co2",
-              "gas co2",
-              "paru-paru",
-            ],
-        },
-        {
-          answerCode: 3,
-          text: "Kelebihan air",
-          score: 60,
-          keywords:
-            [
-              "kelebihan air",
-              "air berlebih",
-              "air",
-              "urin",
-              "keringat",
-            ],
-        },
-        {
-          answerCode: 4,
-          text: "Garam",
-          score: 40,
-          keywords:
-            [
-              "garam",
-              "kelebihan garam",
-              "garam mineral",
-              "natrium",
-              "mineral",
-            ],
-        },
-        {
-          answerCode: 5,
-          text: "Bilirubin",
-          score: 20,
-          keywords:
-            [
-              "bilirubin",
-              "zat bilirubin",
-              "empedu",
-              "hati",
-              "feses",
-            ],
-        },
-      ],
-    },
-
-    {
-      id: 12,
-      question:
-        "Sebutkan zat atau nutrisi yang penting bagi tubuh!",
-      answers: [
-        {
-          answerCode: 1,
-          text: "Air",
-          score: 100,
-          keywords:
-            [
-              "air",
-              "water",
-              "air tubuh",
-              "cairan",
-              "cairan tubuh",
-            ],
-        },
-        {
-          answerCode: 2,
-          text: "Vitamin A",
-          score: 80,
-          keywords:
-            [
-              "vitamin a",
-              "vit a",
-              "vitamin a mata",
-              "kesehatan mata",
-              "vitamin",
-            ],
-        },
-        {
-          answerCode: 3,
-          text: "Vitamin C",
-          score: 60,
-          keywords:
-            [
-              "vitamin c",
-              "vit c",
-              "asam askorbat",
-              "penyembuhan luka",
-              "kekebalan",
-            ],
-        },
-        {
-          answerCode: 4,
-          text: "Zat besi",
-          score: 40,
-          keywords:
-            [
-              "zat besi",
-              "besi",
-              "fe",
-              "iron",
-              "hemoglobin",
-            ],
-        },
-        {
-          answerCode: 5,
-          text: "Kalsium",
-          score: 20,
-          keywords:
-            [
-              "kalsium",
-              "calcium",
-              "ca",
-              "tulang",
-              "gigi",
-            ],
-        },
-      ],
-    },
-
-    {
-      id: 13,
-      question:
-        "Sebutkan gangguan yang dapat terjadi pada sistem peredaran darah!",
-      answers: [
-        {
-          answerCode: 1,
-          text: "Anemia",
-          score: 100,
-          keywords:
-            [
-              "anemia",
-              "kurang darah",
-              "kekurangan hemoglobin",
-              "kekurangan sel darah merah",
-              "penyakit anemia",
-            ],
-        },
-        {
-          answerCode: 2,
-          text: "Hipertensi",
-          score: 80,
-          keywords:
-            [
-              "hipertensi",
-              "tekanan darah tinggi",
-              "darah tinggi",
-              "hypertension",
-              "tekanan tinggi",
-            ],
-        },
-        {
-          answerCode: 3,
-          text: "Hipotensi",
-          score: 60,
-          keywords:
-            [
-              "hipotensi",
-              "tekanan darah rendah",
-              "darah rendah",
-              "hypotension",
-              "tekanan rendah",
-            ],
-        },
-        {
-          answerCode: 4,
-          text: "Aterosklerosis",
-          score: 40,
-          keywords:
-            [
-              "aterosklerosis",
-              "atherosclerosis",
-              "penyempitan pembuluh",
-              "plak",
-              "pembuluh darah",
-            ],
-        },
-        {
-          answerCode: 5,
-          text: "Stroke",
-          score: 20,
-          keywords:
-            [
-              "stroke",
-              "serangan stroke",
-              "gangguan peredaran darah",
-              "pembuluh darah otak",
-              "penyakit stroke",
-            ],
-        },
-      ],
-    },
-
-    {
-      id: 14,
-      question:
-        "Sebutkan gangguan yang dapat terjadi pada sistem pernapasan manusia!",
-      answers: [
-        {
-          answerCode: 1,
-          text: "Asma",
-          score: 100,
-          keywords:
-            [
-              "asma",
-              "sesak napas",
-              "penyempitan saluran pernapasan",
-            ],
-        },
-        {
-          answerCode: 2,
-          text: "Bronkitis",
-          score: 80,
-          keywords:
-            [
-              "bronkitis",
-              "radang bronkus",
-              "peradangan bronkus",
-            ],
-        },
-        {
-          answerCode: 3,
-          text: "Pneumonia",
-          score: 60,
-          keywords:
-            [
-              "pneumonia",
-              "radang paru-paru",
-              "infeksi paru-paru",
-            ],
-        },
-        {
-          answerCode: 4,
-          text: "Tuberkulosis",
-          score: 40,
-          keywords:
-            [
-              "tuberkulosis",
-              "tbc",
-              "tb",
-              "tbc paru",
-            ],
-        },
-        {
-          answerCode: 5,
-          text: "Influenza",
-          score: 20,
-          keywords:
-            [
-              "influenza",
-              "flu",
-              "flu biasa",
-            ],
-        },
-      ],
-    },
-
-    {
-      id: 15,
-      question:
-        "Sebutkan gangguan yang dapat terjadi pada sistem pencernaan manusia!",
-      answers: [
-        {
-          answerCode: 1,
-          text: "Diare",
-          score: 100,
-          keywords:
-            [
-              "diare",
-              "mencret",
-              "buang air besar cair",
-            ],
-        },
-        {
-          answerCode: 2,
-          text: "Sembelit",
-          score: 80,
-          keywords:
-            [
-              "sembelit",
-              "konstipasi",
-              "susah buang air besar",
-              "susah bab",
-            ],
-        },
-        {
-          answerCode: 3,
-          text: "Gastritis",
-          score: 60,
-          keywords:
-            [
-              "gastritis",
-              "maag",
-              "radang lambung",
-              "sakit maag",
-            ],
-        },
-        {
-          answerCode: 4,
-          text: "Apendisitis",
-          score: 40,
-          keywords:
-            [
-              "apendisitis",
-              "radang usus buntu",
-              "usus buntu",
-            ],
-        },
-        {
-          answerCode: 5,
-          text: "Karies gigi",
-          score: 20,
-          keywords:
-            [
-              "karies gigi",
-              "karies",
-              "gigi berlubang",
-              "gigi rusak",
-            ],
-        },
-      ],
-    },
-
-    {
-      id: 16,
-      question:
-        "Sebutkan gangguan yang dapat terjadi pada sistem ekskresi manusia!",
-      answers: [
-        {
-          answerCode: 1,
-          text: "Batu ginjal",
-          score: 100,
-          keywords:
-            [
-              "batu ginjal",
-              "batu pada ginjal",
-              "batu saluran kemih",
-            ],
-        },
-        {
-          answerCode: 2,
-          text: "Nefritis",
-          score: 80,
-          keywords:
-            [
-              "nefritis",
-              "radang ginjal",
-              "peradangan ginjal",
-            ],
-        },
-        {
-          answerCode: 3,
-          text: "Gagal ginjal",
-          score: 60,
-          keywords:
-            [
-              "gagal ginjal",
-              "ginjal gagal",
-              "kerusakan ginjal",
-            ],
-        },
-        {
-          answerCode: 4,
-          text: "Albuminuria",
-          score: 40,
-          keywords:
-            [
-              "albuminuria",
-              "albumin dalam urine",
-              "protein dalam urine",
-            ],
-        },
-        {
-          answerCode: 5,
-          text: "Hematuria",
-          score: 20,
-          keywords:
-            [
-              "hematuria",
-              "darah dalam urine",
-              "darah dalam urin",
-              "urin berdarah",
-            ],
-        },
-      ],
-    },
-
-    {
-      id: 17,
-      question:
-        "Sebutkan hal-hal yang dapat menyebabkan gangguan pada sistem pernapasan manusia!",
-      answers: [
-        {
-          answerCode: 1,
-          text: "Merokok",
-          score: 100,
-          keywords:
-            [
-              "merokok",
-              "rokok",
-              "asap rokok",
-            ],
-        },
-        {
-          answerCode: 2,
-          text: "Polusi udara",
-          score: 80,
-          keywords:
-            [
-              "polusi udara",
-              "pencemaran udara",
-              "udara tercemar",
-            ],
-        },
-        {
-          answerCode: 3,
-          text: "Asap kendaraan",
-          score: 60,
-          keywords:
-            [
-              "asap kendaraan",
-              "asap knalpot",
-              "knalpot",
-            ],
-        },
-        {
-          answerCode: 4,
-          text: "Debu",
-          score: 40,
-          keywords:
-            [
-              "debu",
-              "paparan debu",
-            ],
-        },
-        {
-          answerCode: 5,
-          text: "Asap pembakaran",
-          score: 20,
-          keywords:
-            [
-              "asap pembakaran",
-              "asap",
-              "pembakaran sampah",
-            ],
-        },
-      ],
-    },
-
-    {
-      id: 18,
-      question:
-        "Sebutkan tingkatan organisasi kehidupan dalam ekologi!",
-      answers: [
-        {
-          answerCode: 1,
-          text: "Populasi",
-          score: 100,
-          keywords:
-            [
-              "populasi",
-              "population",
-              "kumpulan individu sejenis",
-            ],
-        },
-        {
-          answerCode: 2,
-          text: "Komunitas",
-          score: 80,
-          keywords:
-            [
-              "komunitas",
-              "community",
-              "kumpulan populasi",
-              "berbagai populasi",
-            ],
-        },
-        {
-          answerCode: 3,
-          text: "Ekosistem",
-          score: 60,
-          keywords:
-            [
-              "ekosistem",
-              "ecosystem",
-              "makhluk hidup dan lingkungan",
-              "interaksi makhluk hidup",
-            ],
-        },
-        {
-          answerCode: 4,
-          text: "Bioma",
-          score: 40,
-          keywords:
-            [
-              "bioma",
-              "biome",
-              "kumpulan ekosistem",
-              "wilayah luas",
-            ],
-        },
-        {
-          answerCode: 5,
-          text: "Biosfer",
-          score: 20,
-          keywords:
-            [
-              "biosfer",
-              "biosphere",
-              "seluruh ekosistem",
-              "kehidupan di bumi",
-            ],
-        },
-      ],
-    },
-  ];
-
 let questionOrder =
   [];
 
+/* Paket soal aktif (lihat soal.js); id unik dipakai papan jawaban. */
+function currentSet() {
+  return questionSets.find(
+    (set) =>
+      set.key === state.setKey,
+  );
+}
 function shuffleQuestions() {
-  questionOrder = [
-    ...questionBank,
-  ];
+  questionOrder =
+    currentSet().questions.map(
+      (q, i) => ({
+        ...q,
+        id: `${state.setKey}-${i}`,
+      }),
+    );
   for (
     let i =
       questionOrder.length -
@@ -1321,7 +55,7 @@ const state = {
   revealedAnswers:
     [],
   gameFinished: false,
-  soundEnabled: true,
+  setKey: null,
   teamNames: [
     "TIM 1",
     "TIM 2",
@@ -1473,8 +207,29 @@ function tokenOverlap(
     )
   );
 }
+/* Toleransi salah ketik. Huruf awal tiap kata harus sama dan tiap kata
+   harus cukup mirip, supaya "pirometer" tidak cocok ke "mikrometer" dan
+   "microsoft edge" tidak cocok ke "microsoft excel". */
+function typoScore(
+  text,
+  key,
+) {
+  const A = text.split(" "),
+    B = key.split(" ");
+  const wordsOk =
+    A.length === B.length
+      ? A.every(
+          (w, i) =>
+            w[0] === B[i][0] &&
+            similarity(w, B[i]) >= 0.5,
+        )
+      : text[0] === key[0];
+  return wordsOk
+    ? similarity(text, key)
+    : 0;
+}
 const MIN_FUZZY_LENGTH = 3,
-  MATCH_THRESHOLD = 0.72;
+  MATCH_THRESHOLD = 0.8;
 /* Skor satu kata kunci: sama persis = 1; input pendek (mis. "hb", "tb") hanya boleh sama persis. */
 function keyScore(
   text,
@@ -1488,7 +243,7 @@ function keyScore(
   )
     return 0;
   let score = Math.max(
-    similarity(text, key),
+    typoScore(text, key),
     tokenOverlap(text, key),
   );
   // Input memuat kata kunci utuh, mis. "eritrosit dalam darah".
@@ -1497,10 +252,13 @@ function keyScore(
     ` ${text} `.includes(` ${key} `)
   )
     score = Math.max(score, 0.9);
-  // Input potongan kata kunci yang cukup panjang, mis. "mitokon".
+  // Input awal kata yang terpotong, mis. "mitokon" (bukan potongan
+  // tengah: "asma" tidak cocok ke "plasma"; kata utuh seperti
+  // "termometer" tidak dianggap potongan "termometer raksa").
   if (
     text.length >= 4 &&
-    key.includes(text) &&
+    ` ${key}`.includes(` ${text}`) &&
+    !` ${key} `.includes(` ${text} `) &&
     text.length / key.length >= 0.6
   )
     score = Math.max(score, 0.85);
@@ -1562,62 +320,31 @@ function ensureAudio() {
     audioCtx = null;
   }
 }
-function toggleSound() {
-  state.soundEnabled =
-    !state.soundEnabled;
-  const btn = $(
-    "soundBtn",
-  );
-  btn.textContent =
-    state.soundEnabled
-      ? "Suara: Nyala"
-      : "Suara: Mati";
-  btn.setAttribute(
-    "aria-pressed",
-    state.soundEnabled,
-  );
-  notify(
-    state.soundEnabled
-      ? "Efek suara dinyalakan."
-      : "Efek suara dimatikan.",
-  );
-}
-/* Tinggi panel guru dipakai sebagai ruang bawah halaman (0 saat disembunyikan). */
+/* Tinggi panel guru dipakai sebagai ruang kosong di bawah halaman. */
 function syncDockSpace() {
-  const dock = $(
-    "operatorDock",
-  );
   document.documentElement.style.setProperty(
     "--dock-h",
-    dock.classList.contains(
-      "collapsed",
-    )
-      ? "0px"
-      : `${dock.offsetHeight}px`,
+    `${$("operatorDock").offsetHeight}px`,
   );
 }
-function toggleDock() {
-  const dock = $(
-      "operatorDock",
+/* Kolom jawaban selalu tampil; yang disembunyikan hanya tombol-tombol guru. */
+function toggleTools() {
+  const tools = $(
+      "operatorTools",
     ),
     btn = $(
-      "dockToggle",
+      "toolsToggle",
     );
-  const hidden =
-    dock.classList.toggle(
-      "collapsed",
-    );
-  btn.textContent = hidden
-    ? "Tampilkan Panel Guru"
-    : "Sembunyikan Panel Guru";
+  tools.hidden =
+    !tools.hidden;
+  btn.textContent =
+    tools.hidden
+      ? "Tampilkan Tombol"
+      : "Sembunyikan Tombol";
   btn.setAttribute(
     "aria-expanded",
-    !hidden,
+    !tools.hidden,
   );
-  $(
-    "operatorInner",
-  ).inert = hidden;
-  syncDockSpace();
 }
 function tone(
   freq,
@@ -1626,10 +353,7 @@ function tone(
   type = "sine",
   vol = 0.09,
 ) {
-  if (
-    !state.soundEnabled ||
-    !audioCtx
-  )
+  if (!audioCtx)
     return;
   const osc =
       audioCtx.createOscillator(),
@@ -2283,23 +1007,152 @@ function launchFireworks() {
   })();
 }
 
+/* Layar pilih paket soal (kelas + mapel) sebelum permainan. */
+const ROMAN = {
+  7: "VII",
+  8: "VIII",
+};
+function renderSetupScreen() {
+  const kelasList = [
+    ...new Set(
+      questionSets.map(
+        (set) => set.kelas,
+      ),
+    ),
+  ];
+  $(
+    "setChoices",
+  ).innerHTML = kelasList
+    .map(
+      (kelas) => `
+      <section class="set-group" aria-label="Kelas ${ROMAN[kelas]}">
+        <h3 class="set-group-title">Kelas ${ROMAN[kelas]}</h3>
+        <div class="set-row">${questionSets
+          .filter((set) => set.kelas === kelas)
+          .map(
+            (set) => `
+          <button class="set-choice" type="button" data-set="${set.key}">
+            <span class="set-mapel">${set.mapel}</span>
+            <span class="set-topik">${set.topik}</span>
+            <span class="set-count">${set.questions.length} soal</span>
+          </button>`,
+          )
+          .join("")}
+        </div>
+      </section>`,
+    )
+    .join("");
+}
+/* Selama layar pilih soal terbuka, isi halaman di belakangnya tidak bisa difokus/diklik. */
+function setGameInert(inert) {
+  document.querySelector(
+    ".app-shell",
+  ).inert = inert;
+  $(
+    "operatorDock",
+  ).inert = inert;
+}
+function openSetup() {
+  cancelStrikeTimer();
+  setGameInert(true);
+  clearInterval(
+    fireworkTimer,
+  );
+  $(
+    "endModal",
+  ).classList.remove(
+    "open",
+  );
+  $(
+    "setupScreen",
+  ).classList.add(
+    "open",
+  );
+  const first =
+    document.querySelector(
+      ".set-choice",
+    );
+  if (first)
+    first.focus();
+}
+function chooseSet(key) {
+  state.setKey = key;
+  const set =
+      currentSet(),
+    label = `${set.mapel} Kelas ${ROMAN[set.kelas]}`;
+  $(
+    "gameTitle",
+  ).textContent = `FAMILY 100 – ${label.toUpperCase()}`;
+  $(
+    "gameSubtitle",
+  ).textContent =
+    set.topik;
+  $(
+    "footerText",
+  ).textContent = `Mode Operator Guru • ${label}`;
+  document.title = `Family 100 – ${label}`;
+  // Kartu lama harus dibuat ulang walau id soal kebetulan sama.
+  delete $("answers")
+    .dataset.questionId;
+  $(
+    "setupScreen",
+  ).classList.remove(
+    "open",
+  );
+  setGameInert(false);
+  resetGame();
+}
+function backToSetup() {
+  const inProgress =
+    !state.gameFinished &&
+    (state.scores[0] ||
+      state.scores[1] ||
+      state.revealedAnswers
+        .length ||
+      state.currentQuestionIndex);
+  if (
+    inProgress &&
+    !confirm(
+      "Kembali ke pilihan soal? Skor permainan ini akan hilang.",
+    )
+  )
+    return;
+  openSetup();
+}
+
 document.addEventListener(
   "DOMContentLoaded",
   () => {
-    shuffleQuestions();
-    render();
+    renderSetupScreen();
+    $(
+      "setChoices",
+    ).onclick = (e) => {
+      const button =
+        e.target.closest(
+          "[data-set]",
+        );
+      if (button)
+        chooseSet(
+          button.dataset.set,
+        );
+    };
+    $(
+      "setupBtn",
+    ).onclick =
+      backToSetup;
+    $(
+      "modalSetupBtn",
+    ).onclick =
+      openSetup;
+    openSetup();
     $(
       "checkBtn",
     ).onclick =
       checkAnswer;
     $(
-      "soundBtn",
+      "toolsToggle",
     ).onclick =
-      toggleSound;
-    $(
-      "dockToggle",
-    ).onclick =
-      toggleDock;
+      toggleTools;
     ["pointerdown", "keydown"].forEach(
       (type) =>
         document.addEventListener(

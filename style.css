@@ -272,24 +272,7 @@ h1 {
   background: rgba(3,17,58,0.96);
   box-shadow: 0 -8px 25px rgba(0,0,0,0.35);
   backdrop-filter: blur(12px);
-  transition: transform 0.3s ease;
 }
-/* Panel disembunyikan: geser ke bawah, sisakan tab toggle. */
-.operator-dock.collapsed { transform: translateY(100%); }
-.dock-toggle {
-  position: absolute;
-  right: 14px;
-  bottom: calc(100% + 3px);
-  padding: 5px 12px;
-  border: 0;
-  border-radius: 8px 8px 0 0;
-  background: var(--gold);
-  color: #061747;
-  font-size: 12px;
-  font-weight: 900;
-  opacity: 0.9;
-}
-.dock-toggle:hover { opacity: 1; }
 .operator-inner { max-width: 1440px; margin: auto; }
 .operator-top { display: flex; gap: 8px; align-items: center; }
 .answer-input {
@@ -318,9 +301,10 @@ h1 {
 .button.gold { background: var(--gold); color: #061747; }
 .button.red { background: var(--red); }
 .button.dark { background: #173276; border: 1px solid #5185e5; }
-.button.sound { white-space: nowrap; background: #1147bd; }
+.operator-top .button { white-space: nowrap; }
+.tools-toggle { min-width: 150px; }
 .operator-controls { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
-.operator-controls .button { flex: 1 1 110px; }
+.operator-controls .button { flex: 1 1 auto; white-space: nowrap; }
 .manual-picker {
   display: none;
   align-items: center;
@@ -394,8 +378,71 @@ h1 {
   font-size: 16px;
   font-weight: 900;
 }
+.modal-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+.modal-actions .button { padding: 10px 18px; font-size: 15px; }
 .final-score-box strong { display: block; margin-top: 5px; font-size: 43px; color: var(--gold); }
 .total-points { margin: 0 0 21px; font-weight: 800; color: #d6e6ff; }
+/* Layar pilih paket soal */
+.setup-screen {
+  position: fixed;
+  z-index: 70;
+  inset: 0;
+  display: none;
+  padding: 20px;
+  overflow-y: auto;
+  background:
+    radial-gradient(circle at 15% 4%, rgba(28,133,255,0.38), transparent 29%),
+    radial-gradient(circle at 90% 42%, rgba(255,213,44,0.12), transparent 23%),
+    linear-gradient(135deg, #061547 0%, #092568 48%, #061743 100%);
+}
+.setup-screen.open { display: grid; animation: modalIn 0.35s both; }
+.setup-card {
+  width: min(860px, 100%);
+  margin: auto;
+  padding: 28px 26px 30px;
+  border: 3px solid var(--gold);
+  border-radius: 28px;
+  background: linear-gradient(145deg, #174dd1 0%, #092785 70%);
+  box-shadow: inset 0 0 0 4px rgba(255,255,255,0.12), 0 18px 45px rgba(0,0,0,0.35);
+  text-align: center;
+}
+.setup-logo { margin: 0 auto 12px; }
+.setup-title {
+  margin: 0;
+  color: var(--gold);
+  font-size: clamp(26px, 4vw, 40px);
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.setup-hint { margin: 6px 0 22px; color: #bddaff; font-size: 14px; font-weight: 700; }
+.set-choices { display: grid; gap: 18px; text-align: left; }
+.set-group-title {
+  margin: 0 0 8px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 900;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+.set-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; }
+.set-choice {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 16px 18px;
+  border: 2px solid #8fc3ff;
+  border-radius: 16px;
+  background: linear-gradient(90deg, #103baf, #1e63df);
+  color: #fff;
+  text-align: left;
+  box-shadow: 0 5px 0 #061b65;
+  transition: transform 0.16s, border-color 0.16s;
+}
+.set-choice:hover { transform: translateY(-2px); border-color: var(--gold); }
+.set-mapel { color: var(--gold); font-size: 24px; font-weight: 900; }
+.set-topik { font-size: 15px; font-weight: 700; }
+.set-count { color: #bddaff; font-size: 13px; font-weight: 700; }
 footer {
   max-width: 1440px;
   margin: 0 auto;
@@ -441,6 +488,7 @@ footer {
   .operator-top { flex-wrap: wrap; }
   .answer-input { flex-basis: 100%; }
   .operator-top .button { flex: 1; }
+  .tools-toggle { min-width: 0; }
   .operator-controls .button { flex-basis: 30%; }
 }
 @media (max-width: 520px) {
@@ -450,4 +498,9 @@ footer {
   .answer-front, .answer-back { padding: 0 13px; }
   .operator-dock { padding: 6px 8px 4px; }
   .button { padding: 6px 6px; font-size: 12px; }
+  .operator-controls .button { white-space: normal; }
+  .setup-card { padding: 20px 14px 22px; border-radius: 20px; }
+  .set-choice { padding: 12px; }
+  .set-mapel { font-size: 18px; }
+  .set-topik { font-size: 13px; }
 }
