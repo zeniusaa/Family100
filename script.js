@@ -719,12 +719,14 @@ function checkAnswer() {
   }
   const match =
     findMatch(raw);
+  // Tidak cocok dengan jawaban mana pun: langsung dihitung salah (X).
   if (
     match === null
   ) {
-    notify(
-      "Belum cocok. Guru dapat memilih Salah / ❌ atau cek kembali.",
-    );
+    $(
+      "answerInput",
+    ).value = "";
+    wrongAnswer();
     return;
   }
   revealAnswer(
