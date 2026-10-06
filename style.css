@@ -41,7 +41,7 @@ button:focus-visible, input:focus-visible {
 .app-shell {
   width: 100%;
   min-height: calc(100 * min(var(--vh, 1vh), 1vh));
-  padding-bottom: 258px;
+  padding-bottom: calc(var(--dock-h, 190px) + 24px);
 }
 .topbar {
   border-bottom: 3px solid rgba(255,213,44,0.72);
@@ -267,30 +267,48 @@ h1 {
   left: 0;
   right: 0;
   bottom: 0;
-  padding: 12px 18px 14px;
+  padding: 8px 14px 6px;
   border-top: 3px solid var(--gold);
   background: rgba(3,17,58,0.96);
   box-shadow: 0 -8px 25px rgba(0,0,0,0.35);
   backdrop-filter: blur(12px);
+  transition: transform 0.3s ease;
 }
+/* Panel disembunyikan: geser ke bawah, sisakan tab toggle. */
+.operator-dock.collapsed { transform: translateY(100%); }
+.dock-toggle {
+  position: absolute;
+  right: 14px;
+  bottom: calc(100% + 3px);
+  padding: 5px 12px;
+  border: 0;
+  border-radius: 8px 8px 0 0;
+  background: var(--gold);
+  color: #061747;
+  font-size: 12px;
+  font-weight: 900;
+  opacity: 0.9;
+}
+.dock-toggle:hover { opacity: 1; }
 .operator-inner { max-width: 1440px; margin: auto; }
-.operator-top { display: flex; gap: 10px; align-items: center; }
+.operator-top { display: flex; gap: 8px; align-items: center; }
 .answer-input {
   flex: 1;
   min-width: 0;
-  height: 48px;
-  padding: 0 16px;
+  height: 36px;
+  padding: 0 12px;
   border: 2px solid #7ab5ff;
-  border-radius: 10px;
+  border-radius: 8px;
   background: #fff;
   color: #07143c;
-  font-size: 17px;
+  font-size: 15px;
   font-weight: 700;
 }
 .button {
   border: 0;
-  border-radius: 10px;
-  padding: 12px 14px;
+  border-radius: 8px;
+  padding: 7px 10px;
+  font-size: 13px;
   color: #fff;
   background: #2459d6;
   font-weight: 900;
@@ -301,30 +319,30 @@ h1 {
 .button.red { background: var(--red); }
 .button.dark { background: #173276; border: 1px solid #5185e5; }
 .button.sound { white-space: nowrap; background: #1147bd; }
-.operator-controls { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
-.operator-controls .button { flex: 1 1 125px; }
+.operator-controls { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+.operator-controls .button { flex: 1 1 110px; }
 .manual-picker {
   display: none;
   align-items: center;
   gap: 8px;
   flex-wrap: wrap;
-  margin-top: 10px;
-  padding: 9px 11px;
-  border-radius: 10px;
+  margin-top: 6px;
+  padding: 5px 10px;
+  border-radius: 8px;
   background: #0d347f;
 }
 .manual-picker.open { display: flex; }
-.picker-title { font-size: 14px; font-weight: 900; color: #fff; }
+.picker-title { font-size: 13px; font-weight: 900; color: #fff; }
 .pick-answer {
-  width: 33px;
-  height: 33px;
+  width: 28px;
+  height: 28px;
   padding: 0;
   border-radius: 50%;
   background: var(--gold);
   color: #071b52;
 }
 .pick-answer:disabled { background: #7085b8; color: #d7e0fa; cursor: not-allowed; transform: none; }
-.toast { min-height: 20px; margin-top: 8px; color: #fff; font-size: 14px; font-weight: 800; text-align: center; }
+.toast { min-height: 18px; margin-top: 4px; color: #fff; font-size: 13px; font-weight: 800; text-align: center; }
 .strike-overlay {
   position: fixed;
   z-index: 50;
@@ -407,7 +425,6 @@ footer {
 @keyframes fadeOut { 0%, 55% { opacity: 1; } 100% { opacity: 0; } }
 @keyframes modalIn { from { opacity: 0; } to { opacity: 1; } }
 @media (max-width: 900px) {
-  .app-shell { padding-bottom: 320px; }
   .topbar { padding: 13px; }
   .topbar-inner { flex-wrap: wrap; }
   .head-status { order: 3; width: 100%; min-width: 0; }
@@ -424,14 +441,13 @@ footer {
   .operator-top { flex-wrap: wrap; }
   .answer-input { flex-basis: 100%; }
   .operator-top .button { flex: 1; }
-  .operator-controls .button { flex-basis: 40%; }
+  .operator-controls .button { flex-basis: 30%; }
 }
 @media (max-width: 520px) {
-  .app-shell { padding-bottom: 396px; }
   .subtitle { font-size: 13px; }
   .board { border-radius: 20px; }
   .answer-card { height: 58px; }
   .answer-front, .answer-back { padding: 0 13px; }
-  .operator-dock { padding: 9px; }
-  .button { padding: 10px 8px; font-size: 13px; }
+  .operator-dock { padding: 6px 8px 4px; }
+  .button { padding: 6px 6px; font-size: 12px; }
 }

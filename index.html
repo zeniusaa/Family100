@@ -55,8 +55,9 @@
       <footer data-template-id="game-footer" class="canva-footer">Mode Operator Guru • IPA Kelas VIII</footer>
     </div>
 
-    <section data-template-id="operator-panel" class="operator-dock canva-panel" aria-label="Panel operator guru">
-      <div class="operator-inner">
+    <section id="operatorDock" data-template-id="operator-panel" class="operator-dock canva-panel" aria-label="Panel operator guru">
+      <button id="dockToggle" class="dock-toggle" type="button" aria-controls="operatorInner" aria-expanded="true">Sembunyikan Panel Guru</button>
+      <div id="operatorInner" class="operator-inner">
         <div class="operator-top">
           <input
             id="answerInput"
@@ -67,7 +68,7 @@
             placeholder="Ketik jawaban peserta..."
           />
           <button id="checkBtn" data-template-id="check-button" class="button gold canva-button" type="button">Cek Jawaban</button>
-          <button id="soundBtn" data-template-id="sound-button" class="button sound canva-button" type="button">Aktifkan Suara</button>
+          <button id="soundBtn" data-template-id="sound-button" class="button sound canva-button" type="button" aria-pressed="true">Suara: Nyala</button>
         </div>
         <div class="operator-controls">
           <button id="manualBtn" data-template-id="correct-button" class="button canva-button" type="button">Benar</button>

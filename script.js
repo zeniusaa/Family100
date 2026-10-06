@@ -1321,7 +1321,7 @@ const state = {
   revealedAnswers:
     [],
   gameFinished: false,
-  soundEnabled: false,
+  soundEnabled: true,
   teamNames: [
     "TIM 1",
     "TIM 2",
@@ -1541,8 +1541,15 @@ function findMatch(
     : null;
 }
 
-/* Audio Web Audio API hanya berjalan setelah interaksi pengguna. */
-function enableSound() {
+/* Browser hanya mengizinkan audio setelah interaksi pengguna, jadi
+   AudioContext dibuat otomatis pada klik/tombol keyboard pertama. */
+function ensureAudio() {
+  if (
+    audioCtx &&
+    audioCtx.state !==
+      "suspended"
+  )
+    return;
   try {
     audioCtx =
       audioCtx ||
@@ -1551,19 +1558,66 @@ function enableSound() {
         window.webkitAudioContext
       )();
     audioCtx.resume();
-    state.soundEnabled = true;
-    $(
-      "soundBtn",
-    ).textContent =
-      "Suara Aktif ✓";
-    notify(
-      "Efek suara aktif.",
-    );
   } catch (e) {
-    notify(
-      "Suara tidak tersedia di browser ini.",
-    );
+    audioCtx = null;
   }
+}
+function toggleSound() {
+  state.soundEnabled =
+    !state.soundEnabled;
+  const btn = $(
+    "soundBtn",
+  );
+  btn.textContent =
+    state.soundEnabled
+      ? "Suara: Nyala"
+      : "Suara: Mati";
+  btn.setAttribute(
+    "aria-pressed",
+    state.soundEnabled,
+  );
+  notify(
+    state.soundEnabled
+      ? "Efek suara dinyalakan."
+      : "Efek suara dimatikan.",
+  );
+}
+/* Tinggi panel guru dipakai sebagai ruang bawah halaman (0 saat disembunyikan). */
+function syncDockSpace() {
+  const dock = $(
+    "operatorDock",
+  );
+  document.documentElement.style.setProperty(
+    "--dock-h",
+    dock.classList.contains(
+      "collapsed",
+    )
+      ? "0px"
+      : `${dock.offsetHeight}px`,
+  );
+}
+function toggleDock() {
+  const dock = $(
+      "operatorDock",
+    ),
+    btn = $(
+      "dockToggle",
+    );
+  const hidden =
+    dock.classList.toggle(
+      "collapsed",
+    );
+  btn.textContent = hidden
+    ? "Tampilkan Panel Guru"
+    : "Sembunyikan Panel Guru";
+  btn.setAttribute(
+    "aria-expanded",
+    !hidden,
+  );
+  $(
+    "operatorInner",
+  ).inert = hidden;
+  syncDockSpace();
 }
 function tone(
   freq,
@@ -2241,7 +2295,24 @@ document.addEventListener(
     $(
       "soundBtn",
     ).onclick =
-      enableSound;
+      toggleSound;
+    $(
+      "dockToggle",
+    ).onclick =
+      toggleDock;
+    ["pointerdown", "keydown"].forEach(
+      (type) =>
+        document.addEventListener(
+          type,
+          ensureAudio,
+          true,
+        ),
+    );
+    new ResizeObserver(
+      syncDockSpace,
+    ).observe(
+      $("operatorDock"),
+    );
     $(
       "wrongBtn",
     ).onclick =
