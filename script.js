@@ -507,8 +507,8 @@ const questionBank =
               "alveolus",
               "alveoli",
               "pertukaran gas",
-              "o2",
-              "co2",
+              "gelembung paru",
+              "kantung udara",
             ],
         },
       ],
@@ -542,7 +542,7 @@ const questionBank =
               "sel darah merah",
               "eritosit",
               "red blood cell",
-              "hemoglobin",
+              "pengangkut oksigen",
             ],
         },
         {
@@ -627,8 +627,8 @@ const questionBank =
               "kapiler",
               "capillary",
               "pembuluh kapiler",
-              "arteriola",
-              "venula",
+              "pembuluh rambut",
+              "pertukaran zat",
             ],
         },
         {
@@ -640,7 +640,7 @@ const questionBank =
               "arteriola",
               "arteriole",
               "cabang arteri",
-              "pembuluh kecil",
+              "pembuluh nadi kecil",
               "arteri kecil",
             ],
         },
@@ -653,7 +653,7 @@ const questionBank =
               "venula",
               "venule",
               "cabang vena",
-              "pembuluh kecil",
+              "pembuluh balik kecil",
               "vena kecil",
             ],
         },
@@ -723,9 +723,10 @@ const questionBank =
           score: 20,
           keywords:
             [
-              "Usus besar",
-              "usus",
-              "Usus halus",
+              "usus besar",
+              "kolon",
+              "colon",
+              "feses",
             ],
         },
       ],
@@ -784,8 +785,8 @@ const questionBank =
               "garam",
               "kelebihan garam",
               "garam mineral",
-              "keringat",
-              "urin",
+              "natrium",
+              "mineral",
             ],
         },
         {
@@ -891,7 +892,7 @@ const questionBank =
               "anemia",
               "kurang darah",
               "kekurangan hemoglobin",
-              "darah rendah",
+              "kekurangan sel darah merah",
               "penyakit anemia",
             ],
         },
@@ -1209,7 +1210,7 @@ const questionBank =
     {
       id: 18,
       question:
-        "Sebutkan tingkatan organisasi kehidupan dalam ekologi dari yang paling kecil hingga paling besar!",
+        "Sebutkan tingkatan organisasi kehidupan dalam ekologi!",
       answers: [
         {
           answerCode: 1,
@@ -1332,7 +1333,16 @@ const $ = (id) =>
   );
 let audioCtx = null,
   fireworkTimer =
-    null;
+    null,
+  strikeTimer = null;
+
+/* Batalkan pergantian tim otomatis setelah 3 X yang masih tertunda. */
+function cancelStrikeTimer() {
+  clearTimeout(
+    strikeTimer,
+  );
+  strikeTimer = null;
+}
 
 function normalizeText(
   text,
@@ -1360,6 +1370,11 @@ function normalizeText(
     .replace(
       /\bnya\b|\bnya\s/g,
       " ",
+    )
+    // Akhiran "-nya": "ginjalnya" -> "ginjal" ("hanya"/"punya" tetap).
+    .replace(
+      /\b(\w{3,})nya\b/g,
+      "$1",
     )
     .replace(
       /\s+/g,
@@ -1434,23 +1449,16 @@ function similarity(
       )
   );
 }
+/* Kemiripan token (Jaccard): "asap" vs "asap rokok" = 0.5, bukan 1. */
 function tokenOverlap(
   a,
   b,
 ) {
   const A = new Set(
-      a
-        .split(" ")
-        .filter(
-          Boolean,
-        ),
+      a.split(" ").filter(Boolean),
     ),
     B = new Set(
-      b
-        .split(" ")
-        .filter(
-          Boolean,
-        ),
+      b.split(" ").filter(Boolean),
     );
   let shared = 0;
   A.forEach((t) => {
@@ -1461,86 +1469,75 @@ function tokenOverlap(
     shared /
     Math.max(
       1,
-      Math.min(
-        A.size,
-        B.size,
-      ),
+      A.size + B.size - shared,
     )
   );
+}
+const MIN_FUZZY_LENGTH = 3,
+  MATCH_THRESHOLD = 0.72;
+/* Skor satu kata kunci: sama persis = 1; input pendek (mis. "hb", "tb") hanya boleh sama persis. */
+function keyScore(
+  text,
+  key,
+) {
+  if (text === key)
+    return 1;
+  if (
+    text.length < MIN_FUZZY_LENGTH ||
+    key.length < MIN_FUZZY_LENGTH
+  )
+    return 0;
+  let score = Math.max(
+    similarity(text, key),
+    tokenOverlap(text, key),
+  );
+  // Input memuat kata kunci utuh, mis. "eritrosit dalam darah".
+  if (
+    key.length >= 4 &&
+    ` ${text} `.includes(` ${key} `)
+  )
+    score = Math.max(score, 0.9);
+  // Input potongan kata kunci yang cukup panjang, mis. "mitokon".
+  if (
+    text.length >= 4 &&
+    key.includes(text) &&
+    text.length / key.length >= 0.6
+  )
+    score = Math.max(score, 0.85);
+  return score;
 }
 /* Pemeriksaan gabungan: frasa, substring, token, dan typo ringan. */
 function findMatch(
   input,
 ) {
   const text =
-    normalizeText(
-      input,
-    );
+    normalizeText(input);
   if (!text)
     return null;
-  const answers =
-    questionBank[
-      state
-        .currentQuestionIndex
-    ].answers;
-  let best = null,
-    bestScore = 0;
-  answers.forEach(
-    (
-      answer,
-      index,
-    ) =>
-      answer.keywords
-        .concat(
-          answer.text,
-        )
-        .forEach(
-          (key) => {
-            const k =
-              normalizeText(
-                key,
-              );
-            let score =
-              similarity(
+  const best =
+    currentQuestion().answers.map(
+      (answer) =>
+        Math.max(
+          ...answer.keywords
+            .concat(answer.text)
+            .map((key) =>
+              keyScore(
                 text,
-                k,
-              );
-            if (
-              text.includes(
-                k,
-              ) ||
-              k.includes(
-                text,
-              )
-            )
-              score =
-                Math.max(
-                  score,
-                  0.9,
-                );
-            score =
-              Math.max(
-                score,
-                tokenOverlap(
-                  text,
-                  k,
-                ),
-              );
-            if (
-              score >
-              bestScore
-            ) {
-              bestScore =
-                score;
-              best =
-                index;
-            }
-          },
+                normalizeText(key),
+              ),
+            ),
         ),
+    );
+  const top = Math.max(...best);
+  if (top < MATCH_THRESHOLD)
+    return null;
+  const winners = best.flatMap(
+    (score, i) =>
+      score === top ? [i] : [],
   );
-  return bestScore >=
-    0.72
-    ? best
+  // Skor seri antar jawaban berarti ambigu: biar guru memilih manual.
+  return winners.length === 1
+    ? winners[0]
     : null;
 }
 
@@ -1730,13 +1727,18 @@ function render() {
       state.scores[
         team
       ];
-    $(
-      "teamName" +
-        i,
-    ).value =
-      state.teamNames[
-        team
-      ];
+    // Jangan timpa input yang sedang diketik (spasi/kursor bisa hilang).
+    const nameInput = $(
+      "teamName" + i,
+    );
+    if (
+      document.activeElement !==
+      nameInput
+    )
+      nameInput.value =
+        state.teamNames[
+          team
+        ];
     $(
       "strikes" + i,
     ).innerHTML =
@@ -1748,20 +1750,49 @@ function render() {
           `<span class="strike ${team === state.activeTeam && x < state.strikes ? "on" : ""}">❌</span>`,
       ).join("");
   });
-  $(
+  // Kartu hanya dibuat ulang saat soal berganti; selebihnya cukup toggle
+  // class agar transisi flip CSS benar-benar berjalan.
+  const board = $(
     "answers",
-  ).innerHTML =
-    q.answers
-      .map(
-        (a, i) => `
-        <div class="answer-card ${state.revealedAnswers.includes(i) ? "revealed" : ""}" aria-label="Jawaban nomor ${i + 1}">
+  );
+  if (
+    board.dataset.questionId !==
+    String(q.id)
+  ) {
+    board.dataset.questionId =
+      q.id;
+    board.innerHTML =
+      q.answers
+        .map(
+          (a, i) => `
+        <div class="answer-card" aria-label="Jawaban nomor ${i + 1}">
           <div class="answer-inner">
             <div class="answer-front"><span class="answer-number">${i + 1}</span><span class="answer-front-score">${a.score}</span></div>
-            <div class="answer-back"><span class="answer-text">${state.revealedAnswers.includes(i) ? a.text : ""}</span><span class="answer-score">${a.score}</span></div>
+            <div class="answer-back"><span class="answer-text"></span><span class="answer-score">${a.score}</span></div>
           </div>
         </div>`,
-      )
-      .join("");
+        )
+        .join("");
+  }
+  board
+    .querySelectorAll(
+      ".answer-card",
+    )
+    .forEach((card, i) => {
+      const open =
+        state.revealedAnswers.includes(
+          i,
+        );
+      card.classList.toggle(
+        "revealed",
+        open,
+      );
+      card.querySelector(
+        ".answer-text",
+      ).textContent = open
+        ? q.answers[i].text
+        : "";
+    });
   renderPicker();
 }
 function renderPicker() {
@@ -1875,8 +1906,9 @@ function wrongAnswer() {
       `Tiga kesalahan! Giliran ${state.teamNames[state.activeTeam]} habis. Giliran dialihkan.`,
     );
     render();
-    setTimeout(
+    strikeTimer = setTimeout(
       () => {
+        strikeTimer = null;
         state.activeTeam =
           state.activeTeam ===
           0
@@ -1926,6 +1958,7 @@ function switchTeam() {
   if (
     !state.gameFinished
   ) {
+    cancelStrikeTimer();
     state.activeTeam =
       state.activeTeam ===
       0
@@ -1957,9 +1990,10 @@ function nextQuestion() {
     state.gameFinished
   )
     return;
+  cancelStrikeTimer();
   if (
     state.currentQuestionIndex ===
-    questionBank.length -
+    questionOrder.length -
       1
   ) {
     finishGame();
@@ -1987,6 +2021,7 @@ function nextQuestion() {
 }
 function resetGame() {
   // Acak ulang soal setiap game baru
+  cancelStrikeTimer();
   shuffleQuestions();
 
   state.currentQuestionIndex = 0;
@@ -2144,36 +2179,42 @@ function launchFireworks() {
       canvas.clientWidth,
       canvas.clientHeight,
     );
-    particles.forEach(
-      (p, i) => {
-        p.x += p.vx;
-        p.y += p.vy;
-        p.vy += 0.045;
-        p.life--;
-        ctx.globalAlpha =
-          Math.max(
-            p.life /
-              42,
-            0,
-          );
-        ctx.fillStyle =
-          p.color;
-        ctx.fillRect(
-          p.x,
-          p.y,
-          3,
-          3,
+    // Iterasi mundur supaya splice tidak melompati partikel berikutnya.
+    for (
+      let i =
+        particles.length - 1;
+      i >= 0;
+      i--
+    ) {
+      const p =
+        particles[i];
+      p.x += p.vx;
+      p.y += p.vy;
+      p.vy += 0.045;
+      p.life--;
+      ctx.globalAlpha =
+        Math.max(
+          p.life /
+            42,
+          0,
         );
-        if (
-          p.life <=
-          0
-        )
-          particles.splice(
-            i,
-            1,
-          );
-      },
-    );
+      ctx.fillStyle =
+        p.color;
+      ctx.fillRect(
+        p.x,
+        p.y,
+        3,
+        3,
+      );
+      if (
+        p.life <=
+        0
+      )
+        particles.splice(
+          i,
+          1,
+        );
+    }
     ctx.globalAlpha = 1;
     if (
       $(
@@ -2213,6 +2254,7 @@ document.addEventListener(
       "resetXBtn",
     ).onclick =
       () => {
+        cancelStrikeTimer();
         state.strikes = 0;
         notify(
           "Tanda X direset.",
@@ -2279,24 +2321,29 @@ document.addEventListener(
         }
       },
     );
-    [0, 1].forEach(
-      (i) =>
-        $(
-          "teamName" +
-            i,
-        ).addEventListener(
-          "input",
-          (e) => {
-            state.teamNames[
-              i
-            ] =
-              e.target.value
-                .trim()
-                .toUpperCase() ||
-              `TIM ${i + 1}`;
-            render();
-          },
-        ),
-    );
+    [0, 1].forEach((i) => {
+      const input = $(
+        "teamName" + i,
+      );
+      // Simpan nama saat diketik, tapi biarkan isi input apa adanya
+      // (spasi, kosong) sampai fokus pindah.
+      input.addEventListener(
+        "input",
+        () => {
+          state.teamNames[i] =
+            input.value
+              .trim()
+              .toUpperCase() ||
+            `TIM ${i + 1}`;
+        },
+      );
+      input.addEventListener(
+        "blur",
+        () => {
+          input.value =
+            state.teamNames[i];
+        },
+      );
+    });
   },
 );
